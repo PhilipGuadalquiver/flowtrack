@@ -1,0 +1,278 @@
+.project-detail {
+  padding: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-layout.light .project-detail {
+  color: var(--text-primary);
+}
+
+.project-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-layout.light .project-header {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.project-description {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.app-layout.light .project-description {
+  color: #8c8c8c !important;
+}
+
+.project-header .ant-typography {
+  margin: 0 !important;
+  font-weight: 700;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .project-header .ant-typography {
+  color: var(--text-primary) !important;
+}
+
+.project-content {
+  margin-top: 0;
+  padding: 0;
+  background: #1f1f1f;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.app-layout.light .project-content {
+  background: #fff;
+  border-color: var(--border-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.app-layout.light .project-content {
+  background: #fff;
+  border-color: var(--border-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.project-overview {
+  padding: 32px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-layout.light .project-overview {
+  color: var(--text-primary);
+}
+
+.overview-stat-card {
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.overview-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.app-layout.light .overview-stat-card {
+  background: #fff;
+  border-color: var(--border-color);
+}
+
+.overview-stat-card .ant-statistic-title {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.app-layout.light .overview-stat-card .ant-statistic-title {
+  color: var(--text-secondary);
+}
+
+.overview-stat-card .ant-statistic-content {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.overview-card {
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  height: 100%;
+}
+
+.app-layout.light .overview-card {
+  background: #fff;
+  border-color: var(--border-color);
+}
+
+.overview-card-title {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.app-layout.light .overview-card-title {
+  color: var(--text-primary);
+}
+
+.overview-card .ant-card-head {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 24px;
+}
+
+.app-layout.light .overview-card .ant-card-head {
+  border-bottom-color: var(--border-color);
+}
+
+.overview-card .ant-card-body {
+  padding: 24px;
+}
+
+.overview-card .ant-list-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.overview-card .ant-list-item:last-child {
+  border-bottom: none;
+}
+
+.app-layout.light .overview-card .ant-list-item {
+  border-bottom-color: var(--border-color);
+}
+
+.overview-card .ant-list-item-meta-title {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.app-layout.light .overview-card .ant-list-item-meta-title {
+  color: var(--text-primary);
+}
+
+.overview-card .ant-list-item-meta-description {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.app-layout.light .overview-card .ant-list-item-meta-description {
+  color: var(--text-secondary);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.app-layout.light .info-label {
+  color: var(--text-secondary);
+}
+
+.info-value {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.app-layout.light .info-value {
+  color: var(--text-primary);
+}
+
+.project-tabs-wrapper {
+  margin-top: 0;
+}
+
+.project-detail .ant-tabs {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.project-detail .ant-tabs-nav {
+  margin: 0;
+  padding: 0;
+  background: #1f1f1f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px 8px 0 0;
+}
+
+.app-layout.light .project-detail .ant-tabs-nav {
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-detail .ant-tabs-nav-list {
+  padding: 0 16px;
+}
+
+.project-detail .ant-tabs-tab {
+  font-weight: 500;
+  padding: 12px 20px;
+  color: rgba(255, 255, 255, 0.65) !important;
+  transition: all 0.2s ease;
+  margin: 0 8px 0 0 !important;
+  border: none !important;
+  font-size: 15px;
+}
+
+.project-detail .ant-tabs-tab:hover {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.project-detail .ant-tabs-tab-active {
+  font-weight: 600;
+  color: #1890ff !important;
+}
+
+.project-detail .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #1890ff !important;
+}
+
+.app-layout.light .project-detail .ant-tabs-tab {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+
+.app-layout.light .project-detail .ant-tabs-tab:hover {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.app-layout.light .project-detail .ant-tabs-tab-active {
+  color: #1890ff !important;
+}
+
+.app-layout.light .project-detail .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #1890ff !important;
+}
+
+.project-detail .ant-tabs-ink-bar {
+  height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: #1890ff;
+  bottom: -1px;
+}
+
+.project-detail .ant-tabs-content-holder {
+  display: none !important;
+}
+
+.project-detail .ant-tabs-content {
+  display: none !important;
+}

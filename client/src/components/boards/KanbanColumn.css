@@ -1,0 +1,142 @@
+.kanban-column {
+  width: 500px;
+  min-width: 390px;
+  max-width: 300px;
+  flex-shrink: 0;
+}
+
+.column-card {
+  height: calc(100vh - 200px);
+  max-height: calc(100vh - 200px);
+  min-height: 600px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.column-card .ant-card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 !important;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+}
+
+.app-layout.light .column-card {
+  background: #fff;
+  border-color: var(--border-color);
+}
+
+.column-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.column-card.drag-over {
+  border-color: rgba(24, 144, 255, 0.5);
+  background: rgba(24, 144, 255, 0.05);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  flex-shrink: 0;
+  height: 56px;
+  min-height: 56px;
+  max-height: 56px;
+}
+
+.app-layout.light .column-header {
+  border-bottom-color: var(--border-color);
+}
+
+.column-header .ant-typography {
+  margin: 0 !important;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-layout.light .column-header .ant-typography {
+  color: var(--text-primary);
+}
+
+.column-header .ant-badge {
+  font-weight: 600;
+}
+
+.column-header .ant-badge-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.app-layout.light .column-header .ant-badge-count {
+  background: var(--bg-light);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  padding: 16px;
+  min-height: 0;
+}
+
+.column-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.column-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.column-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.column-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.empty-column {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.45);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.app-layout.light .empty-column {
+  color: var(--text-secondary);
+}

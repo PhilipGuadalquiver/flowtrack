@@ -1,0 +1,189 @@
+.issues-page {
+  padding: 32px;
+  color: rgba(255, 255, 255, 0.85);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.app-layout.light .issues-page {
+  color: var(--text-primary);
+}
+
+.issues-page .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+}
+
+.app-layout.light .issues-page .page-header {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.issues-page .ant-typography {
+  margin: 0 !important;
+  font-weight: 700;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .issues-page .ant-typography {
+  color: var(--text-primary) !important;
+}
+
+.issues-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-layout.light .issues-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.create-issue-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  height: 40px;
+  padding: 0 24px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.create-issue-btn:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+}
+
+.issues-page .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  background: #1f1f1f;
+}
+
+.app-layout.light .issues-page .ant-card {
+  background: #fff;
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.filters-section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-layout.light .filters-section {
+  background: var(--bg-light);
+  border-color: var(--border-color);
+}
+
+.issues-page .ant-input-search {
+  border-radius: 8px;
+}
+
+.issues-page .ant-input-search .ant-input {
+  border-radius: 8px 0 0 8px;
+}
+
+.issues-page .ant-input-search .ant-input-search-button {
+  border-radius: 0 8px 8px 0;
+  background: #1890ff;
+  border-color: #1890ff;
+}
+
+.issues-page .ant-input-search .ant-input-search-button:hover {
+  background: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.issues-page .ant-select {
+  border-radius: 8px;
+}
+
+.issues-page .ant-table {
+  border-radius: var(--radius-md);
+}
+
+.issues-page .ant-table-thead > tr > th {
+  background: rgba(255, 255, 255, 0.08) !important;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .issues-page .ant-table-thead > tr > th {
+  background: #fafafa !important;
+  border-bottom: 2px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.issues-page .ant-table-tbody > tr:hover > td {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.app-layout.light .issues-page .ant-table-tbody > tr:hover > td {
+  background: rgba(102, 126, 234, 0.04) !important;
+}
+
+.issues-page .ant-table-tbody > tr > td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .issues-page .ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.issues-page .ant-tag {
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 2px 8px;
+}
+
+.issues-table {
+  background: transparent;
+}
+
+.issues-page .ant-table-pagination {
+  margin-top: 24px;
+}
+
+.issues-page .ant-pagination-item {
+  border-radius: 6px;
+}
+
+.issues-page .ant-pagination-item-active {
+  background: #1890ff;
+  border-color: #1890ff;
+}
+
+.issues-page .ant-pagination-item-active a {
+  color: #fff;
+}
+
+.issues-page .ant-pagination-prev,
+.issues-page .ant-pagination-next {
+  border-radius: 6px;
+}
+
+.issues-page .ant-btn-link {
+  padding: 4px 8px;
+  height: auto;
+}
+
+.issues-page .ant-btn-link:hover {
+  background: rgba(24, 144, 255, 0.1);
+}

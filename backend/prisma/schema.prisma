@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String
+  password  String
+  role      String   @default("viewer")
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  projects        ProjectMember[]
+  createdProjects Project[]      @relation("ProjectCreator")
+  reportedIssues  Issue[]        @relation("IssueReporter")
+  assignedIssues  Issue[]        @relation("IssueAssignee")
+  comments        Comment[]
+
+  @@map("users")
+}
+
+model Project {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  key         String   @unique
+  description String?
+  status      String   @default("active") // active, archived, completed
+  creatorId   String   @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  creator      User            @relation("ProjectCreator", fields: [creatorId], references: [id])
+  members      ProjectMember[]
+  issues       Issue[]
+  sprints      Sprint[]
+
+  @@map("projects")
+}
+
+model ProjectMember {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  projectId String   @db.ObjectId
+  userId    String   @db.ObjectId
+  role      String   @default("viewer") // admin, project_manager, developer, viewer
+  joinedAt  DateTime @default(now())
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+  @@map("project_members")
+}
+
+model Issue {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  projectId   String    @db.ObjectId
+  key         String    // ECOM-1, MOBILE-2, etc.
+  type        String    // task, bug, story, epic
+  title       String
+  description String?
+  status      String    @default("to_do") // to_do, in_progress, in_review, done
+  priority    String    @default("medium") // lowest, low, medium, high, highest
+  assigneeId  String?   @db.ObjectId
+  reporterId  String    @db.ObjectId
+  storyPoints Int?
+  dueDate     DateTime?
+  labels      String[]
+  sprintId    String?   @db.ObjectId
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  project  Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assignee User?     @relation("IssueAssignee", fields: [assigneeId], references: [id])
+  reporter User      @relation("IssueReporter", fields: [reporterId], references: [id])
+  sprint   Sprint?   @relation(fields: [sprintId], references: [id], onDelete: SetNull)
+  comments Comment[]
+
+  @@unique([projectId, key])
+  @@index([projectId])
+  @@index([status])
+  @@index([assigneeId])
+  @@map("issues")
+}
+
+model Sprint {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  projectId   String    @db.ObjectId
+  name        String
+  goal        String?
+  startDate   DateTime
+  endDate     DateTime
+  status      String    @default("planned") // planned, active, completed
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  project Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  issues  Issue[]
+
+  @@index([projectId])
+  @@index([status])
+  @@map("sprints")
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  issueId   String   @db.ObjectId
+  userId    String   @db.ObjectId
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  issue Issue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([issueId])
+  @@index([userId])
+  @@map("comments")
+}

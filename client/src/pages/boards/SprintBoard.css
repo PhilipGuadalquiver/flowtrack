@@ -1,0 +1,118 @@
+.sprint-board-page {
+  padding: 0;
+}
+
+.sprint-board-page .ant-tabs {
+  background: transparent;
+}
+
+.sprint-board-page .ant-tabs-tab {
+  font-weight: 500;
+  padding: 12px 24px;
+}
+
+.sprint-board-page .ant-tabs-tab-active {
+  font-weight: 600;
+}
+
+.sprint-backlog {
+  padding: 0;
+}
+
+.backlog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.backlog-header .ant-typography {
+  margin: 0 !important;
+  font-weight: 700;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .backlog-header .ant-typography {
+  color: var(--text-primary) !important;
+}
+
+.backlog-issues {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.sprint-board {
+  padding: 0;
+}
+
+.sprint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.sprint-header .ant-typography {
+  font-weight: 600;
+}
+
+.sprint-columns {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.sprint-column {
+  min-width: 320px;
+  flex: 1;
+}
+
+.sprint-column .ant-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  height: 100%;
+}
+
+.sprint-column .ant-card-head {
+  background: var(--bg-light);
+  border-bottom: 2px solid var(--border-color);
+  padding: 16px 20px;
+}
+
+.sprint-column .ant-card-head-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.sprint-column .ant-card-body {
+  padding: 20px;
+}
+
+.sprint-column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 400px;
+  max-height: calc(100vh - 400px);
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .sprint-columns {
+    flex-direction: column;
+  }
+  
+  .backlog-issues {
+    grid-template-columns: 1fr;
+  }
+}

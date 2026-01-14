@@ -1,0 +1,93 @@
+.dashboard {
+  padding: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-layout.light .dashboard {
+  color: var(--text-primary);
+}
+
+.dashboard .ant-typography {
+  margin-bottom: 32px !important;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-layout.light .dashboard .ant-typography {
+  color: var(--text-primary);
+}
+
+.welcome-text {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.app-layout.light .welcome-text {
+  color: var(--text-secondary) !important;
+}
+
+.dashboard .ant-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.dashboard .ant-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.dashboard .ant-statistic-title {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.dashboard .ant-statistic-content {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.dashboard .ant-card-head {
+  border-bottom: 2px solid var(--border-color);
+  padding: 16px 24px;
+}
+
+.dashboard .ant-card-head-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.dashboard .ant-card-body {
+  padding: 24px;
+}
+
+.recent-issues-card .ant-list-item,
+.projects-card .ant-list-item {
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.recent-issues-card .ant-list-item:hover,
+.projects-card .ant-list-item:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border-color: rgba(102, 126, 234, 0.2);
+  transform: translateX(4px);
+  cursor: pointer;
+}
+
+.recent-issues-card .ant-list-item-meta-title,
+.projects-card .ant-list-item-meta-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.recent-issues-card .ant-list-item-meta-description,
+.projects-card .ant-list-item-meta-description {
+  color: var(--text-secondary);
+}

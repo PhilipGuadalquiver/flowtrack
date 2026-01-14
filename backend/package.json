@@ -1,0 +1,38 @@
+{
+  "name": "flowtrack-backend",
+  "version": "1.0.0",
+  "description": "Backend API for FlowTrack project management system",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "setup:env": "node setup-env.js",
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "start:dev": "node src/server.js",
+    "start:prod": "node src/server.js",
+    "prisma:push": "prisma db push",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "node prisma/seed.js",
+    "prisma:reset": "prisma migrate reset"
+  },
+  "keywords": [
+    "express",
+    "postgresql",
+    "prisma",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.1"
+  }
+}

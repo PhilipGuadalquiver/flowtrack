@@ -1,0 +1,111 @@
+.projects-page {
+  padding: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-layout.light .projects-page {
+  color: var(--text-primary);
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-layout.light .page-header {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.page-header .ant-typography {
+  margin: 0 !important;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-layout.light .page-header .ant-typography {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.projects-page .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  background: #1f1f1f;
+}
+
+.app-layout.light .projects-page .ant-card {
+  background: #fff;
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.projects-page .ant-table {
+  border-radius: var(--radius-md);
+}
+
+.projects-page .ant-table-thead > tr > th {
+  background: rgba(255, 255, 255, 0.08) !important;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .projects-page .ant-table-thead > tr > th {
+  background: #fafafa !important;
+  border-bottom: 2px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.projects-page .ant-table-tbody > tr:hover > td {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.app-layout.light .projects-page .ant-table-tbody > tr:hover > td {
+  background: rgba(102, 126, 234, 0.04) !important;
+}
+
+.projects-page .ant-table-tbody > tr > td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .projects-page .ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.projects-page .ant-input-search {
+  border-radius: var(--radius-md);
+}
+
+.projects-page .ant-btn-primary {
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.projects-page .ant-btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

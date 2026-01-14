@@ -1,0 +1,83 @@
+.kanban-board {
+  padding: 32px;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+}
+
+.app-layout.light .kanban-board {
+  color: var(--text-primary);
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+}
+
+.app-layout.light .board-header {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.board-header .ant-typography {
+  margin: 0 !important;
+  font-weight: 700;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.app-layout.light .board-header .ant-typography {
+  color: var(--text-primary) !important;
+}
+
+.board-header .ant-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  height: 40px;
+  padding: 0 24px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.board-header .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+}
+
+.kanban-columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 20px;
+  padding-right: 4px;
+  align-items: flex-start;
+}
+
+.kanban-columns::-webkit-scrollbar {
+  height: 8px;
+}
+
+.kanban-columns::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.kanban-columns::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.kanban-columns::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .kanban-columns {
+    flex-direction: column;
+  }
+}
