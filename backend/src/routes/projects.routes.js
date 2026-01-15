@@ -428,7 +428,8 @@ router.post('/:projectId/issues', async (req, res) => {
     const issueData = req.body
 
     // TODO: Add authentication middleware to get reporterId
-    const reporterId = req.user?.id || issueData.reporterId
+    // Accept both 'reporter' and 'reporterId' from frontend
+    const reporterId = req.user?.id || issueData.reporterId || issueData.reporter
 
     if (!reporterId) {
       return res.status(401).json({
@@ -458,11 +459,46 @@ router.post('/:projectId/issues', async (req, res) => {
 
     const key = `${project.key}-${issueCount + 1}`
 
+    // Remove fields that we're setting explicitly or that shouldn't be in the data
+    const { 
+      reporter, 
+      reporterId: _, 
+      projectId: __, 
+      key: ___, 
+      assignee,
+      ...cleanIssueData 
+    } = issueData
+
+    // Map assignee to assigneeId if provided, handle empty strings
+    let assigneeId = assignee || cleanIssueData.assigneeId || null
+    if (assigneeId === '' || assigneeId === undefined) {
+      assigneeId = null
+    }
+    
+    // Remove assigneeId from cleanIssueData if it exists there
+    delete cleanIssueData.assigneeId
+    
+    // Convert storyPoints to integer if it's a string
+    if (cleanIssueData.storyPoints !== undefined && cleanIssueData.storyPoints !== null) {
+      cleanIssueData.storyPoints = parseInt(cleanIssueData.storyPoints, 10) || null
+    }
+    
+    // Ensure labels is an array
+    if (!Array.isArray(cleanIssueData.labels)) {
+      cleanIssueData.labels = cleanIssueData.labels ? [cleanIssueData.labels] : []
+    }
+    
+    // Convert dueDate string to Date if provided
+    if (cleanIssueData.dueDate && typeof cleanIssueData.dueDate === 'string') {
+      cleanIssueData.dueDate = new Date(cleanIssueData.dueDate)
+    }
+
     const issue = await prisma.issue.create({
       data: {
         projectId,
         key,
-        ...issueData,
+        ...cleanIssueData,
+        assigneeId,
         reporterId
       },
       include: {
@@ -488,9 +524,12 @@ router.post('/:projectId/issues', async (req, res) => {
     res.status(201).json(issue)
   } catch (error) {
     console.error('Create issue error:', error)
+    console.error('Error details:', error.message)
+    console.error('Error stack:', error.stack)
     res.status(500).json({
       error: {
-        message: 'Failed to create issue'
+        message: error.message || 'Failed to create issue',
+        details: process.env.NODE_ENV === 'development' ? error.message : undefined
       }
     })
   }
