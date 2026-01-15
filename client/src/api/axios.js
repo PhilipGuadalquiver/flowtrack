@@ -2,12 +2,43 @@ import axios from 'axios'
 
 // Get API URL based on environment
 const getApiUrl = () => {
-  // In production, use VITE_API_URL or default to relative path
+  let apiUrl = import.meta.env.VITE_API_URL
+  
+  // In production
   if (import.meta.env.PROD) {
-    return import.meta.env.VITE_API_URL || '/api'
+    // If VITE_API_URL is not set, use relative path
+    if (!apiUrl) {
+      return '/api'
+    }
+    
+    // Ensure VITE_API_URL ends with /api
+    // If it doesn't have /api, add it
+    if (apiUrl && !apiUrl.endsWith('/api')) {
+      // Remove trailing slash if present
+      apiUrl = apiUrl.replace(/\/$/, '')
+      // Add /api if not present
+      if (!apiUrl.endsWith('/api')) {
+        apiUrl = `${apiUrl}/api`
+      }
+    }
+    
+    return apiUrl
   }
-  // In development, use VITE_API_URL or default to localhost
-  return import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+  
+  // In development
+  if (!apiUrl) {
+    return 'http://localhost:5000/api'
+  }
+  
+  // Ensure development URL also ends with /api
+  if (apiUrl && !apiUrl.endsWith('/api')) {
+    apiUrl = apiUrl.replace(/\/$/, '')
+    if (!apiUrl.endsWith('/api')) {
+      apiUrl = `${apiUrl}/api`
+    }
+  }
+  
+  return apiUrl
 }
 
 const API_URL = getApiUrl()
@@ -17,7 +48,21 @@ console.log('🔗 API Configuration:')
 console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 console.log('Base URL:', API_URL)
 console.log('Environment:', import.meta.env.MODE)
-console.log('VITE_API_URL:', import.meta.env.VITE_API_URL || 'Not set')
+console.log('VITE_API_URL (raw):', import.meta.env.VITE_API_URL || 'Not set')
+console.log('VITE_API_URL (processed):', API_URL)
+
+// Warn if production URL doesn't look right
+if (import.meta.env.PROD) {
+  if (!API_URL.includes('/api')) {
+    console.warn('⚠️ WARNING: Base URL does not include /api!')
+    console.warn('⚠️ Make sure VITE_API_URL in Vercel ends with /api')
+    console.warn('⚠️ Example: https://your-backend.railway.app/api')
+  }
+  if (API_URL.startsWith('http') && !API_URL.includes('railway') && !API_URL.includes('render') && !API_URL.includes('fly')) {
+    console.warn('⚠️ WARNING: Production URL might be incorrect!')
+    console.warn('⚠️ Make sure VITE_API_URL points to your backend (Railway/Render/etc)')
+  }
+}
 console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 // Create axios instance
