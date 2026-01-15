@@ -20,7 +20,7 @@ export const config = {
   databaseUrl: process.env.DATABASE_URL || '',
   
   // JWT
-  jwtSecret: process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+  jwtSecret: process.env.JWT_SECRET || 'd1478473f47edac42a0884be6740c029dedba6dd222f7144cd71178c66b758f549ac06c2289d20458532bd644e27d7a62277aa7019772c4f3055f27d0bb6e476',
   jwtExpire: process.env.JWT_EXPIRE || '7d',
   
   // CORS

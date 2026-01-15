@@ -29,9 +29,33 @@ const initializeServer = async () => {
 // Middleware
 // CORS configuration - Allow all origins in development, specific origins in production
 const corsOptions = {
-  origin: config.isDevelopment 
-    ? true  // Allow all origins in development
-    : config.clientUrl,  // Only allow configured origin in production
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true)
+    
+    // In development, allow all origins
+    if (config.isDevelopment) {
+      return callback(null, true)
+    }
+    
+    // In production, check against CLIENT_URL
+    const allowedOrigins = config.clientUrl 
+      ? config.clientUrl.split(',').map(url => url.trim()) // Support multiple origins (comma-separated)
+      : []
+    
+    // Check if origin is allowed
+    if (allowedOrigins.length === 0) {
+      console.warn('⚠️ CLIENT_URL is not set. CORS may block requests.')
+      return callback(null, true) // Allow if not set (fallback, but should be set)
+    }
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      console.warn(`⚠️ CORS blocked origin: ${origin}. Allowed: ${allowedOrigins.join(', ')}`)
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -105,9 +129,7 @@ const startServer = async () => {
     console.log(`🚀 Server is running on port ${config.port}`)
     console.log(`📊 Environment: ${config.env}`)
     console.log(`🔗 API: ${config.apiUrl}/api`)
-    if (config.isDevelopment) {
-      console.log(`🌐 Client URL: ${config.clientUrl}`)
-    }
+    console.log(`🌐 Client URL (CORS): ${config.clientUrl || 'Not set'}`)
   })
 }
 
