@@ -121,15 +121,30 @@ process.on('SIGTERM', async () => {
   process.exit(0)
 })
 
+// Request logging middleware (for debugging)
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    console.log(`📥 ${req.method} ${req.path}`)
+    if (req.headers.authorization) {
+      console.log('   🔑 Authorization header present')
+    }
+  }
+  next()
+})
+
 // Start server
 const startServer = async () => {
   await initializeServer()
   
   app.listen(config.port, () => {
-    console.log(`🚀 Server is running on port ${config.port}`)
-    console.log(`📊 Environment: ${config.env}`)
-    console.log(`🔗 API: ${config.apiUrl}/api`)
-    console.log(`🌐 Client URL (CORS): ${config.clientUrl || 'Not set'}`)
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    console.log('🚀 Server is running on port', config.port)
+    console.log('📊 Environment:', config.env)
+    console.log('🔗 API:', `${config.apiUrl}/api`)
+    console.log('🌐 Client URL (CORS):', config.clientUrl || 'Not set')
+    console.log('🔐 JWT Secret:', config.jwtSecret ? 'Configured' : '⚠️ NOT SET')
+    console.log('🔐 JWT Expire:', config.jwtExpire)
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
   })
 }
 
