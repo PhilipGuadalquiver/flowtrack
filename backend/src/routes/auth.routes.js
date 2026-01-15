@@ -27,10 +27,32 @@ router.post('/login', async (req, res) => {
       })
     }
 
-    // Find user by email
-    const user = await prisma.user.findUnique({
+    // Find user by email (case-insensitive search for MongoDB)
+    // Try exact match first
+    let user = await prisma.user.findUnique({
       where: { email }
     })
+    
+    // If not found, try case-insensitive search (MongoDB)
+    if (!user) {
+      const allUsers = await prisma.user.findMany({
+        where: {
+          email: {
+            equals: email,
+            mode: 'insensitive'
+          }
+        }
+      })
+      user = allUsers[0] || null
+    }
+    
+    // Log all users for debugging (in development only)
+    if (!user && config.isDevelopment) {
+      const allUsers = await prisma.user.findMany({
+        select: { email: true, name: true }
+      })
+      console.log('📋 All users in database:', allUsers.map(u => u.email).join(', ') || 'None')
+    }
 
     if (!user) {
       console.log('❌ User not found for email:', email)
