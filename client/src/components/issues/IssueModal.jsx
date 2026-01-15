@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Modal, Form, Input, Select, Button, DatePicker } from 'antd'
+import { Modal, Form, Input, Select, Button, DatePicker, message } from 'antd'
 import { useProjectStore } from '../../store/projectStore'
 import { useAuthStore } from '../../store/authStore'
 import { issueTypes, priorities, statuses } from '../../data/mockData'
@@ -9,10 +9,8 @@ const { TextArea } = Input
 
 function IssueModal({ visible, issue, projectId, onClose }) {
   const [form] = Form.useForm()
-  const { createIssue, updateIssue, projects, users, fetchUsers } = useProjectStore()
+  const { createIssue, updateIssue, users, fetchUsers } = useProjectStore()
   const { user } = useAuthStore()
-
-  const project = projects.find((p) => p.id === projectId)
 
   // Fetch users when modal opens
   useEffect(() => {
@@ -48,18 +46,29 @@ function IssueModal({ visible, issue, projectId, onClose }) {
       const issueData = {
         ...values,
         dueDate: values.dueDate ? values.dueDate.format('YYYY-MM-DD') : null,
-        key: issue
-          ? issue.key
-          : `${project.key}-${Date.now()}`,
       }
-      if (issue) {
-        updateIssue(issue.id, issueData)
+      
+      // Remove projectId and key from issueData for creation (backend generates key)
+      if (!issue) {
+        delete issueData.projectId
+        delete issueData.key
       } else {
-        createIssue(issueData)
+        // For updates, keep the key if it exists
+        issueData.key = issue.key
+      }
+      
+      if (issue) {
+        await updateIssue(issue.id, issueData)
+        message.success('Issue updated successfully')
+      } else {
+        await createIssue(projectId, issueData)
+        message.success('Issue created successfully')
       }
       onClose()
     } catch (error) {
-      console.error('Validation failed:', error)
+      console.error('Error saving issue:', error)
+      const errorMessage = error.response?.data?.error?.message || error.message || 'Failed to save issue'
+      message.error(errorMessage)
     }
   }
 

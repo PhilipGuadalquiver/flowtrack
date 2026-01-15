@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { ConfigProvider } from 'antd'
 import App from './App'
 import { useThemeStore, getThemeConfig } from './store/themeStore'
+import './config/env' // Load and log environment configuration
 import './index.css'
 import './styles/global.css'
 
