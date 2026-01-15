@@ -3,6 +3,11 @@ import api from './axios'
 export const authAPI = {
   // Login
   login: async (email, password) => {
+    console.log('🔐 Login Request:')
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    console.log('Email:', email)
+    console.log('Password:', '***hidden***')
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     const response = await api.post('/auth/login', { email, password })
     return response.data
   },
